@@ -1,0 +1,109 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+suma corrida.com_ -- emu8086 assembler version: 4.08  
+ 
+[ 12/10/2020  --  10:05:56 a. m. ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       
+[   2]        :                                       ; You may customize this and other start-up templates;
+[   3]        :                                       ; The location of this template is c:\emu8086\inc\0_com_template.txt
+[   4]        :                                       ; suma de 2 numeros enteros con 3 digitos
+[   5]        :                                       
+[   6]        :                                       include "emu8086.inc"
+[   7]        :                                       org 100h
+[   8]        :                                       
+[   9]    0100: EB 02                                 .data
+[  10]    0102: 00 00                                 suma db 2 dup (?)
+[  11]    0104:                                       .code
+[  12]    0104:                                       sumas proc
+[  13]    0104: 50 56 EB 0E 20 31 65 72 20 4E 75 6D   print " 1er Numero: "
+                65 72 6F 3A 20 00 BE 08 01 2E 8A 04 
+                3C 00 74 07 46 B4 0E CD 10 EB F2 5E 
+                58                                  
+[  14]    0129: E8 85 01                              call scan_num
+[  15]    012C: 88 0E 02 01                           mov suma[0],cl
+[  16]    0130: 50 56 EB 04 20 0D 0A 00 BE 34 01 2E   printn " "
+                8A 04 3C 00 74 07 46 B4 0E CD 10 EB 
+                F2 5E 58                            
+[  17]    014B: 50 56 EB 0E 20 32 64 6F 20 4E 75 6D   print " 2do Numero: "
+                65 72 6F 3A 20 00 BE 4F 01 2E 8A 04 
+                3C 00 74 07 46 B4 0E CD 10 EB F2 5E 
+                58                                  
+[  18]    0170: E8 3E 01                              call scan_num
+[  19]    0173: 88 0E 03 01                           mov suma[1],cl
+[  20]    0177: 33 C0                                 xor ax,ax
+[  21]    0179: 02 06 02 01                           add al,suma[0]
+[  22]    017D: 02 06 03 01                           add al,suma[1]
+[  23]    0181: 50 56 EB 04 20 0D 0A 00 BE 85 01 2E   printn " "
+                8A 04 3C 00 74 07 46 B4 0E CD 10 EB 
+                F2 5E 58                            
+[  24]    019C: 50 56 EB 08 20 53 75 6D 61 3A 20 00   print " Suma: "
+                BE A0 01 2E 8A 04 3C 00 74 07 46 B4 
+                0E CD 10 EB F2 5E 58                
+[  25]    01BB: E8 78 00                              call print_num
+[  26]        :                                       sumas endp
+[  27]    01BE:                                       exit:
+[  28]    01BE: 50 56 EB 02 20 00 BE C2 01 2E 8A 04   print " "
+                3C 00 74 07 46 B4 0E CD 10 EB F2 5E 
+                58                                  
+[  29]    01D7: 50 56 EB 04 20 0D 0A 00 BE DB 01 2E   printn " "
+                8A 04 3C 00 74 07 46 B4 0E CD 10 EB 
+                F2 5E 58                            
+[  30]    01F2: 50 56 EB 12 50 72 65 73 69 6F 6E 61   print "Presiona enter..."
+                20 65 6E 74 65 72 2E 2E 2E 00 BE F6 
+                01 2E 8A 04 3C 00 74 07 46 B4 0E CD 
+                10 EB F2 5E 58                      
+[  31]    021B: B4 00                                 mov ah,0  ;servicio de pulsación de teclado
+[  32]    021D: CD 16                                 int 16h   ;invoca a servicios de taclado
+[  33]    021F: C3                                    ret
+[  34]    0220: EB 12 50 56 8A 04 3C 00 74 07 46 B4   define_print_string
+                0E CD 10 EB F3 5E 58 C3             
+[  35]    0234: EB 26 52 50 3D 00 00 75 0A 50 B0 30   define_print_num
+                B4 0E CD 10 58 EB 12 3D 00 00 79 0A 
+                F7 D8 50 B0 2D B4 0E CD 10 58 E8 05 
+                00 58 5A C3                         
+[  36]    025C: EB 50 50 53 51 52 B9 01 00 BB 10 27   define_print_num_uns
+                3D 00 00 74 32 83 FB 00 74 35 83 F9 
+                00 74 04 3B C3 72 14 B9 00 00 BA 00 
+                00 F7 F3 04 30 50 8A C0 B4 0E CD 10 
+                58 8B C2 50 BA 00 00 8B C3 2E F7 36 
+                AC 02 8B D8 58 EB CE 50 B0 30 B4 0E 
+                CD 10 58 5A 59 5B 58 C3 0A 00       
+[  37]    02AE: E9 C3 00 52 50 56 B9 00 00 2E C6 06   define_scan_num
+                71 03 00 B4 00 CD 16 B4 0E CD 10 3C 
+                2D 74 69 3C 0D 75 03 E9 93 00 3C 08 
+                75 1E BA 00 00 8B C1 2E F7 36 72 03 
+                8B C8 50 B0 20 B4 0E CD 10 58 50 B0 
+                08 B4 0E CD 10 58 EB CB 3C 30 73 02 
+                EB 04 3C 39 76 1A 50 B0 08 B4 0E CD 
+                10 58 50 B0 20 B4 0E CD 10 58 50 B0 
+                08 B4 0E CD 10 58 EB A7 50 8B C1 2E 
+                F7 26 72 03 8B C8 58 83 FA 00 75 19 
+                2C 30 B4 00 8B D1 03 C8 72 0A EB 8B 
+                2E C6 06 71 03 01 EB 83 8B CA BA 00 
+                00 8B C1 2E F7 36 72 03 8B C8 50 B0 
+                08 B4 0E CD 10 58 50 B0 20 B4 0E CD 
+                10 58 50 B0 08 B4 0E CD 10 58 E9 5A 
+                FF 2E 80 3E 71 03 00 74 02 F7 D9 5E 
+                58 5A C3 00 0A 00                   
+[  38]        :                                       end
+[  39]        :                                       
+[  40]        :                                       ret
+[  41]        :                                       
+[  42]        :                                       
+[  43]        :                                       
+[  44]        :                                       
+[  45]        :                                       
+[  46]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================
